@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Dimensions Communication | أبعاد التواصل</title>
+
+  <!-- Meta قابلة للتعريب -->
+  <meta name="description" data-i18n-meta="meta_desc" content="أبعاد التواصل للتسويق الرقمي: مواقع وصفحات هبوط، إعلانات مدفوعة، سيو، وأتمتة مبنية على بيانات."/>
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:title" data-i18n-meta="og_title" content="Dimensions Communication | أبعاد التواصل"/>
+  <meta property="og:description" data-i18n-meta="og_desc" content="نبني حضورك الرقمي من الهوية وحتى التحويل."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="dc_logo.png"/>
+  <meta name="theme-color" content="#0ea5a3"/>
+  <link rel="icon" href="dc_logo.png"/>
+
+  <style>
+    html{scroll-behavior:smooth}
+    :root{
+      --bg:#f6f7fb;--ink:#0f172a;--muted:#6b7280;--card:#fff;--stroke:#e5e7eb;
+      --brand:#0ea5a3;--accent:#f59e0b;--radius:16px;
+      --shadow:0 12px 28px rgba(2,6,23,.08);
+      --focus:0 0 0 3px rgba(20,184,166,.25)
+    }
+    :root[data-theme="dark"]{
+      --bg:#0b0d10;--ink:#e5e7eb;--muted:#94a3b8;--card:#111318;--stroke:#1f2430;
+      --brand:#14b8a6;--accent:#fbbf24;
+      --shadow:0 12px 34px rgba(0,0,0,.35);
+      --focus:0 0 0 3px rgba(20,184,166,.35)
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Kufi Arabic",Cairo,Arial,sans-serif;
+      background:var(--bg);color:var(--ink);line-height:1.7
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1150px,92%);margin-inline:auto}
+
+    /* الهيدر */
+    header{
+      position:sticky;top:0;z-index:30;
+      background:color-mix(in oklab,var(--bg) 85%,transparent);
+      backdrop-filter:saturate(160%) blur(8px);
+      border-bottom:1px solid var(--stroke)
+    }
+    .bar{
+      display:grid;grid-template-columns:1fr auto 1fr;
+      align-items:center;gap:10px;padding:10px 0
+    }
+    .controls{display:flex;gap:12px;align-items:center;justify-self:start}
+    .control{
+      border:1px solid var(--stroke);background:var(--card);color:var(--ink);
+      padding:8px 12px;border-radius:12px;cursor:pointer;font-weight:700;
+      box-shadow:var(--shadow)
+    }
+    .control:focus-visible{outline:none;box-shadow:var(--focus)}
+    .center-logo{justify-self:center;display:flex;align-items:center;gap:10px}
+    .center-logo img{height:116px;width:auto;object-fit:contain;display:none}
+
+    .social{justify-self:end;display:flex;gap:8px;align-items:center}
+    .social a{
+      width:42px;height:42px;display:grid;place-items:center;
+      border:1px solid var(--stroke);background:var(--card);
+      border-radius:12px;box-shadow:var(--shadow)
+    }
+    .icon{width:20px;height:20px}
+
+    /* ألوان أصلية لأيقونات التواصل الاجتماعي */
+    .social a[aria-label="Facebook"] .icon { color:#1877F2; }
+    .social a[aria-label="LinkedIn"] .icon { color:#0A66C2; }
+    .social a[aria-label="Instagram"] .icon { color:#E4405F; }
+    .social a[aria-label="WhatsApp"] .icon {
+      color:#25D366;
+      stroke:#128C7E;
+      stroke-width:.6;
+    }
+
+    /* شريط الأقسام */
+    .subnav{
+      position:relative;border-top:1px solid var(--stroke);
+      border-bottom:1px solid var(--stroke);
+      background:color-mix(in oklab,var(--card) 85%,transparent)
+    }
+    .subnav-list{
+      display:flex;gap:22px;align-items:center;justify-content:center;
+      margin:0;padding:10px 0;list-style:none
+    }
+    .subnav a{font-weight:900;padding:6px 10px;border-radius:10px}
+    .subnav a:hover{background:color-mix(in oklab,var(--card) 65%,transparent)}
+    @media(max-width:900px){.subnav-list{flex-wrap:wrap;gap:12px}}
+
+    /* القائمة المنسدلة */
+    .has-drop{position:relative}
+    .drop-toggle{display:inline-flex;align-items:center;gap:6px}
+    .drop-toggle svg{width:14px;height:14px}
+    .dropdown{
+      position:absolute;inset-inline-start:0;top:100%;min-width:260px;
+      display:none;flex-direction:column;
+      background:var(--card);border:1px solid var(--stroke);
+      border-radius:12px;box-shadow:var(--shadow);padding:6px;z-index:50
+    }
+    .dropdown a{display:block;padding:10px;border-radius:8px;white-space:normal;line-height:1.5}
+    .dropdown a:hover{background:color-mix(in oklab,var(--card) 65%,transparent)}
+    .has-drop:hover>.dropdown,
+    .has-drop:focus-within>.dropdown,
+    .has-drop.open>.dropdown{display:flex}
+
+    /* الهيرو */
+    .hero{
+      position:relative;min-height:85vh;display:flex;
+      align-items:center;justify-content:center;
+      text-align:center;color:#fff;overflow:hidden
+    }
+    .hero video,.hero .slideshow{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;z-index:-2
+    }
+    .hero .shade{
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.35));
+      z-index:-1
+    }
+    .hero .content{
+      position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+      text-align:center;z-index:2;width:100%;max-width:900px
+    }
+    h1{margin:10px 0 8px;font-size:clamp(2rem,5vw,4rem);font-weight:900}
+    .btn{
+      display:inline-block;background:linear-gradient(135deg,var(--brand),#22d3ee);
+      color:#081418;padding:12px 16px;border-radius:12px;font-weight:800
+    }
+    .btn.ghost{background:var(--card);color:var(--ink);border:1px solid var(--stroke)}
+    .btn.gradient{background:linear-gradient(90deg,#7c3aed,#ec4899);color:#fff;border:none}
+
+    /* كروت عامة */
+    .card{
+      background:var(--card);border:1px solid var(--stroke);
+      border-radius:var(--radius);box-shadow:var(--shadow);padding:16px
+    }
+    .card.hoverable{transition:transform .2s ease,box-shadow .2s ease}
+    .card.hoverable:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(2,6,23,.12)}
+
+    section{padding:56px 0;scroll-margin-top:120px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:900px){.grid-3{grid-template-columns:1fr}}
+
+    .field{
+      width:100%;padding:14px;border-radius:12px;
+      border:1px solid var(--stroke);background:var(--card);color:var(--ink)
+    }
+    .contact-box{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    @media(max-width:900px){.contact-box{grid-template-columns:1fr}}
+
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    /* شريط الشعارات (سابقة الأعمال) */
+    .portfolio-strip{
+      overflow:hidden;border:1px solid var(--stroke);border-radius:14px;
+      background:transparent;box-shadow:var(--shadow)
+    }
+    .portfolio-strip .head{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:10px 14px;border-bottom:1px solid var(--stroke);font-weight:800
+    }
+    .scroller{position:relative;overflow:hidden}
+    .track{
+      display:flex;gap:12px;align-items:center;padding:12px;
+      width:max-content;will-change:transform;
+      animation:marquee var(--dur,80s) linear infinite
+    }
+    .track.reverse{animation-direction:reverse}
+    .thumb-wrap{
+      display:grid;place-items:center;padding:10px;
+      background:color-mix(in oklab,var(--ink) 8%,transparent);
+      border:1px solid var(--stroke);border-radius:12px;box-shadow:var(--shadow)
+    }
+    .thumb-wrap img{
+      height:110px;width:auto;object-fit:contain;display:block;background:transparent;border:0
+    }
+    @media(max-width:900px){.thumb-wrap img{height:84px}}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+
+    /* فرض LTR على شريط الشعارات */
+    .portfolio-strip,.portfolio-strip .scroller,.portfolio-strip .track{direction:ltr}
+    .portfolio-strip .head [data-i18n="portfolio_hint"],
+    #portfolio [data-i18n="portfolio_note"]{display:none}
+
+    /* قسم خدماتنــــــــا: شريط صور التقييمات */
+    #services-gallery{background:transparent}
+    .insta-strip{
+      border-radius:18px;border:1px solid var(--stroke);
+      background:var(--card);box-shadow:var(--shadow);
+      padding:14px;max-width:100%;overflow:hidden
+    }
+    .insta-window{ position:relative;overflow:hidden;width:100% }
+    .insta-track{
+      display:flex;gap:14px;align-items:center;
+      width:max-content;
+      animation:instaLoop 55s linear infinite
+    }
+    .insta-track img{
+      width:260px;max-width:80vw;height:auto;
+      flex-shrink:0;border-radius:24px;
+      box-shadow:var(--shadow);background:#f9fafb
+    }
+    @keyframes instaLoop{ to{transform:translateX(-50%)} }
+    .insta-strip,.insta-window,.insta-track{direction:ltr}
+
+    /* قائمة تفصيلية للخدمات داخل قسم "من نحن" */
+    .services-detail-card h3{ margin-top:4px;margin-bottom:10px;font-size:1.1rem }
+    .services-list{
+      margin:0;padding:0;list-style:decimal;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:6px 28px;font-size:.92rem
+    }
+    .services-list li{ margin-inline-start:1.2rem }
+
+    /* Contact Us: فيديو 2 كخلفية */
+    #map-contact{position:relative;overflow:hidden}
+    #map-contact .bgvid{
+      position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;z-index:-2
+    }
+    #map-contact .contact-shade{
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.6));
+      z-index:-1
+    }
+    #map-contact>.container>h2,
+    #map-contact>.container>p{ color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.35) }
+
+    #topBtn{
+      position:fixed;inset-inline-end:16px;inset-block-end:16px;
+      opacity:0;pointer-events:none;transition:opacity .2s;z-index:40
+    }
+    #topBtn.show{opacity:1;pointer-events:auto}
+    footer{ border-top:1px solid var(--stroke);color:var(--muted);text-align:center;padding:18px 0;margin-top:22px }
+  </style>
+
+  <!-- Schema.org ثابت -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Dimensions Communication",
+    "url":"https://dcotm.com",
+    "logo":"https://dcotm.com/dc_logo.png",
+    "sameAs":[
+      "https://www.facebook.com/profile.php?id=61573739130386",
+      "https://www.linkedin.com/company/106484073/",
+      "https://www.instagram.com/dimensions.communication"
+    ],
+    "contactPoint":[{"@type":"ContactPoint","telephone":"+962791460998","contactType":"customer service","areaServed":"JO","availableLanguage":["Arabic","English"]}]
+  }
+  </script>
+</head>
+<body>
+  <!-- الهيدر + القائمة -->
+  <header>
+    <div class="container bar">
+      <div class="controls">
+        <button id="langBtn" class="control" data-i18n="lang_btn" data-i18n-attr-aria-label="aria_lang" aria-label="Language">AR/EN</button>
+        <button id="themeBtn" class="control" data-i18n-attr-aria-label="aria_theme" aria-label="Theme">🌙</button>
+      </div>
+      <a href="#home" class="center-logo" aria-label="DC Logo" data-i18n-attr-aria-label="aria_logo"><img id="logo" alt="DC logo"></a>
+      <nav class="social" aria-label="Social" data-i18n-attr-aria-label="aria_social">
+        <a target="_blank" rel="noopener" href="https://web.facebook.com/profile.php?id=61573739130386&locale=ar_AR" aria-label="Facebook">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2V9.6c0-2 1.2-3.1 3-3.1.9 0 1.8.16 1.8.16v2h-1c-1 0-1.3.62-1.3 1.3V12h2.2l-.35 3h-1.85v7A10 10 0 0 0 22 12"/></svg>
+        </a>
+        <a target="_blank" rel="noopener" href="https://www.linkedin.com/company/106484073/admin/dashboard/" aria-label="LinkedIn">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v15H0zM7.5 8H12v2h.06c.62-1.18 2.14-2.43 4.4-2.43 4.7 0 5.57 3.09 5.57 7.11V23H17v-6.62c0-1.58-.03-3.63-2.21-3.63-2.21 0-2.55 1.73-2.55 3.52V23H7.5z"/></svg>
+        </a>
+        <a target="_blank" rel="noopener" href="https://www.instagram.com/dimensions.communication" aria-label="Instagram">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="4" y="4" width="16" height="16" rx="4"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <circle cx="18" cy="6.5" r="1"/>
+          </svg>
+        </a>
+        <a target="_blank" rel="noopener" href="https://wa.me/962791460998" aria-label="WhatsApp">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.52 3.48A11.77 11.77 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.1.55 4.07 1.52 5.78L0 24l6.33-1.66A11.9 11.9 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.2-3.48-8.52Z"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+
+    <nav class="subnav" aria-label="Main links" data-i18n-attr-aria-label="aria_main_links">
+      <div class="container">
+        <ul class="subnav-list">
+          <!-- من نحن الآن تأخذ المستخدم إلى بداية الصفحة (الهيرو) -->
+          <li><a href="#home" data-i18n="nav_about">من نحن</a></li>
+          <!-- خدماتنــــــــا تبقى إلى قسم الخدمات في #about -->
+          <li><a href="#about" data-i18n="nav_services">خدماتنــــــــا</a></li>
+
+          <li class="has-drop">
+            <a href="#portfolio" class="drop-toggle" data-i18n="nav_portfolio" aria-haspopup="true" aria-expanded="false">سابقة الأعمال
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 10l5 5 5-5z"/></svg>
+            </a>
+            <ul class="dropdown" role="menu" aria-label="Portfolio sections" data-i18n-attr-aria-label="aria_portfolio_sections">
+              <li>
+                <a role="menuitem" data-i18n="pf_profile"
+                   href="الملف%20التعريفي%20للشركة%20(%D8%A3%D8%A8%D8%B9%D8%A7%D8%AF%20%D8%A7%D9%84%D8%AA%D9%88%D8%A7%D8%B5%D9%84)%20(1)%20(1).pdf"
+                   target="_blank" rel="noopener">
+                  الملف التعريفي للشركة (أبعاد التواصل)
+                </a>
+              </li>
+              <li>
+                <a role="menuitem" data-i18n="pf_designs_done"
+                   href="تصاميم%20قمنا%20بها.pdf" target="_blank" rel="noopener">
+                  تصاميم قمنا بها
+                </a>
+              </li>
+              <li>
+                <a role="menuitem" data-i18n="pf_campaigns_done"
+                   href="حملات%20إعلانية%20قمنا%20بها.pdf" target="_blank" rel="noopener">
+                  حملات إعلانية قمنا بها
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li><a href="#map-contact" data-i18n="nav_contact">تواصل معنا</a></li>
+          <li><a href="#blog" data-i18n="nav_blog">المدونة</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- الهيرو -->
+  <section id="home" class="hero">
+    <video id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="hero_poster.jpg"
+           onerror="document.getElementById('videoHint').style.display='block'">
+      <source src="1.mp4" type="video/mp4">
+    </video>
+    <div class="slideshow" id="slideshow" aria-hidden="true" style="display:none"></div>
+    <div class="shade"></div>
+    <div class="content container">
+      <h1 data-i18n="hero_title">أبعاد التواصل للتسويق الرقمي</h1>
+      <p class="muted" data-i18n="hero_sub" style="color:#e5e7eb;margin-top:6px">نبني حضورك الرقمي من الهوية وحتى التحويل</p>
+      <div id="videoHint" style="display:none;margin-top:10px;background:#111827;color:#fff;padding:8px 12px;border-radius:10px" data-i18n="video_fallback">تعذر تحميل الفيديو. سيتم تشغيل عرض شرائح بديل.</div>
+      <div id="logoHint" style="display:none;margin-top:10px;background:#111827;color:#fff;padding:8px 12px" data-i18n="logo_fallback"></div>
+      <div style="margin-top:20px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;align-items:center">
+        <a class="btn" href="#about" data-i18n="cta_services">خدماتنا</a>
+        <a class="btn ghost" href="#map-contact" data-i18n="cta_contact">تواصل معنا</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- من نحن / خدماتنا (كروت + قائمة الخدمات التفصيلية) -->
+  <section id="about">
+    <div class="container reveal">
+      <h2 style="margin-top:0" data-i18n="services_title">خدماتنا</h2>
+      <p class="muted" style="margin:-6px 0 16px;text-align:center" data-i18n="services_desc">نبني حضورك الرقمي من الهوية وحتى التحويل. مواقع وصفحات هبوط وإعلانات وأتمتة مبنية على بيانات.</p>
+
+      <!-- الكروت الرئيسية الثلاثة -->
+      <div class="grid-3">
+        <article class="card hoverable">
+          <h3 data-i18n="svc1">إعلانات مدفوعة</h3>
+          <p class="muted" data-i18n="svc1_desc">إدارة الميزانيات والإبداعيات والتحسين المستمر.</p>
+        </article>
+        <article class="card hoverable">
+          <h3 data-i18n="svc2">تحسين الظهور SEO</h3>
+          <p class="muted" data-i18n="svc2_desc">سرعة، محتوى وروابط مع تقارير واضحة.</p>
+        </article>
+        <article class="card hoverable">
+          <h3 data-i18n="svc3">مواقع وصفحات هبوط</h3>
+          <p class="muted" data-i18n="svc3_desc">تهيئة للتحويل وربط تحليلات وتتبع.</p>
+        </article>
+      </div>
+
+      <!-- القائمة التفصيلية للخدمات -->
+      <article class="card services-detail-card" style="margin-top:24px">
+        <h3 data-i18n="svc_detail_head">تفاصيل خدماتنــــــــا في إدارة المنصات والحملات</h3>
+        <ol class="services-list">
+          <li data-i18n="svc_d1">إدارة منصـــات التواصـل الاجتماعي.</li>
+          <li data-i18n="svc_d2">إعداد الاستراتيجيات التسويقيـة.</li>
+          <li data-i18n="svc_d3">إدارة كاملة ونشر للمنصات.</li>
+          <li data-i18n="svc_d4">المحتـــــوى الإبداعي.</li>
+          <li data-i18n="svc_d5">التصميــم الجرافيكي.</li>
+          <li data-i18n="svc_d6">إدارة الحملات الإعلانيـــــة.</li>
+          <li data-i18n="svc_d7">تحليــــل الأداء والتقارير.</li>
+          <li data-i18n="svc_d8">إدارة الحملات الإعلانيـــة (تفصيل إضافي للحملات).</li>
+          <li data-i18n="svc_d9">عمل تدقيـق كامـــل للحسابات الإعلانية.</li>
+          <li data-i18n="svc_d10">ربط أدوات التحليل مثل GA4 وHotjar وMicrosoft Clarity.</li>
+          <li data-i18n="svc_d11">ربــط Pixels لجميع المنصات.</li>
+          <li data-i18n="svc_d12">اختيار المنصات الأنســـب.</li>
+          <li data-i18n="svc_d13">إدارة الميزانيــة الإعلانيــــة.</li>
+          <li data-i18n="svc_d14">استهداف الجمهور بدقة.</li>
+          <li data-i18n="svc_d15">قياس أداء الحملات يوميًا.</li>
+          <li data-i18n="svc_d16">تحسين الحملات بشكل دوري.</li>
+          <li data-i18n="svc_d17">تقارير دورية بالنتائج والميزانية.</li>
+          <li data-i18n="svc_d18">تصاميم جرافيك ثابتة ومتحركة.</li>
+          <li data-i18n="svc_d19">إنشاء مواقع إلكترونية.</li>
+          <li data-i18n="svc_d20">تجهيز متجر أو موقع إلكتروني من الصفر.</li>
+        </ol>
+      </article>
+    </div>
+  </section>
+
+  <!-- قسم آراء شركائنـــــــــــــــــــــــــا: صور التقييمات -->
+  <section id="services-gallery">
+    <div class="container reveal">
+      <h2 style="margin-top:0" data-i18n="services_gallery_title">آراء شركائنـــــــــــــــــــــــــا:</h2>
+      <div class="insta-strip">
+        <div class="insta-window">
+          <div class="insta-track">
+            <!-- تأكد من أسماء الملفات الفعلية -->
+            <img src="review-01.png.png" alt="رأي عميل 1" data-i18n-attr-alt="alt_review1">
+            <img src="review-02.png.png" alt="رأي عميل 2" data-i18n-attr-alt="alt_review2">
+            <img src="review-03.png.png" alt="رأي عميل 3" data-i18n-attr-alt="alt_review3">
+            <img src="review-04.png.png" alt="رأي عميل 4" data-i18n-attr-alt="alt_review4">
+            <img src="review-05.png.png" alt="رأي عميل 5" data-i18n-attr-alt="alt_review5">
+            <img src="review-06.png.png" alt="رأي عميل 6" data-i18n-attr-alt="alt_review6">
+            <img src="review-07.png.png" alt="رأي عميل 7" data-i18n-attr-alt="alt_review7">
+            <img src="review-08.png.png" alt="رأي عميل 8" data-i18n-attr-alt="alt_review8">
+            <!-- تكرار لضمان loop سلس -->
+            <img src="review-01.png.png" alt="رأي عميل 1" data-i18n-attr-alt="alt_review1">
+            <img src="review-02.png.png" alt="رأي عميل 2" data-i18n-attr-alt="alt_review2">
+            <img src="review-03.png.png" alt="رأي عميل 3" data-i18n-attr-alt="alt_review3">
+            <img src="review-04.png.png" alt="رأي عميل 4" data-i18n-attr-alt="alt_review4">
+            <img src="review-05.png.png" alt="رأي عميل 5" data-i18n-attr-alt="alt_review5">
+            <img src="review-06.png.png" alt="رأي عميل 6" data-i18n-attr-alt="alt_review6">
+            <img src="review-07.png.png" alt="رأي عميل 7" data-i18n-attr-alt="alt_review7">
+            <img src="review-08.png.png" alt="رأي عميل 8" data-i18n-attr-alt="alt_review8">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- سابقة الأعمال -->
+  <section id="portfolio">
+    <div class="container reveal">
+      <h2 style="margin-top:0" data-i18n="portfolio_title">سابقة الأعمال</h2>
+      <div class="portfolio-strip">
+        <div class="head">
+          <div data-i18n="portfolio_strip">شركات عملنا برفقتها</div>
+          <div style="font-weight:700;color:var(--muted)" data-i18n="portfolio_hint">يمر يمينًا بلا توقف</div>
+        </div>
+        <div class="scroller"><div id="companies-track" class="track"></div></div>
+        <div class="scroller"><div id="companies-track-2" class="track reverse"></div></div>
+      </div>
+      <p class="muted" style="margin-top:6px" data-i18n="portfolio_note">احفظ الشعارات بجانب الملف بنفس الأسماء.</p>
+    </div>
+  </section>
+
+  <!-- آراء العملاء (نصية) -->
+  <section id="testimonials">
+    <div class="container reveal">
+      <h2 style="margin-top:0" data-i18n="testimonials_title">آراء العملاء</h2>
+      <div class="slider" id="slider">
+        <article class="card slide">
+          <p data-i18n="t1">"نقلوا حملاتنا لمستوى أعلى، تكلفة التحويل انخفضت 37%."</p>
+          <strong data-i18n="t1_by">شركة محلية</strong>
+        </article>
+        <article class="card slide">
+          <p data-i18n="t2">"موقع سريع ومهيأ للتحويل. الإطلاق كان خلال أسبوع."</p>
+          <strong data-i18n="t2_by">متجر إلكتروني</strong>
+        </article>
+        <article class="card slide">
+          <p data-i18n="t3">"تقارير واضحة ومتابعة أسبوعية. فريق منظم."</p>
+          <strong data-i18n="t3_by">مزود خدمات</strong>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- تواصل معنا -->
+  <section id="map-contact">
+    <video class="bgvid" autoplay muted loop playsinline preload="metadata" poster="hero_poster.jpg">
+      <source src="2.mp4" type="video/mp4">
+    </video>
+    <div class="shade contact-shade"></div>
+    <div class="container reveal">
+      <h2 style="margin-top:0" data-i18n="contact_title">تواصل معنا</h2>
+      <p class="muted" data-i18n="contact_desc">نرد خلال يوم عمل. اذكر الهدف والميزانية التقريبية.</p>
+      <div style="margin:14px 0 22px;line-height:1.6;font-weight:600;">
+        <div><span data-i18n="phone_label">📞 الهاتف:</span>
+          <a href="tel:+962791460998" style="color:var(--brand);font-weight:700">+962 7 9146 0998</a>
+        </div>
+        <div><span data-i18n="email_label">✉️ البريد:</span>
+          <a href="mailto:info@dcodm.com" style="color:var(--brand);font-weight:700">info@dcodm.com</a>
+        </div>
+      </div>
+      <div class="card contact-box">
+        <div>
+          <iframe title="خريطة موقع الشركة" width="100%" height="380"
+                  style="border:0;border-radius:12px" loading="lazy" allowfullscreen
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps?q=32.013194,35.869417&hl=ar&z=15&output=embed"
+                  data-i18n-attr-title="aria_map_title"></iframe>
+        </div>
+        <form id="contactBox" novalidate>
+          <div style="display:grid;gap:12px">
+            <input class="field" name="name" data-i18n-placeholder="ph_name" placeholder="الاسم" required>
+            <input class="field" type="email" name="email" data-i18n-placeholder="ph_email" placeholder="البريد" required>
+            <input class="field" name="phone" data-i18n-placeholder="ph_phone" placeholder="الهاتف" required pattern="^(\+?962\d{9}|0\d{9})$" title="+962xxxxxxxxx أو 0xxxxxxxxx" data-i18n-attr-title="ph_phone_title">
+            <textarea class="field" name="message" data-i18n-placeholder="ph_msg" placeholder="أخبرنا عن مشروعك" rows="6" required></textarea>
+            <button class="btn.gradient" type="submit" data-i18n="ph_submit">إرسال</button>
+            <p id="boxMsg" class="muted" role="status" aria-live="polite" style="margin:.25rem 0 0"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- المدونة -->
+  <section id="blog">
+    <div class="container reveal">
+      <h2 style="margin-top:0" data-i18n="blog_title">المدونة</h2>
+      <div class="grid-3">
+        <article class="card">
+          <h3 data-i18n="blog1">دليل تحسين محركات البحث 2025</h3>
+          <p class="muted" data-i18n="blog1_desc">نظرة عملية على سرعة الموقع، الكلمات المفتاحية، والروابط الخلفية.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="blog2">هيكلة حملات Meta وGoogle</h3>
+          <p class="muted" data-i18n="blog2_desc">إستراتيجية الميزانيات وتقسيم الجماهير وقياس التحويلات.</p>
+        </article>
+        <article class="card">
+          <h3 data-i18n="blog3">الأتمتة مع Google Sheets + GAS</h3>
+          <p class="muted" data-i18n="blog3_desc">نموذج جمع ليدز وربطه بالبريد والواتساب.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <span data-i18n="rights_prefix">©</span>
+      <span id="y"></span>
+      <span data-i18n="rights">جميع الحقوق محفوظة</span>
+    </div>
+  </footer>
+  <button id="topBtn" class="control" data-i18n="back_to_top" data-i18n-attr-aria-label="back_to_top" aria-label="Back to top">⬆︎</button>
+
+  <script>
+    /* قاموس شامل */
+    const i18n={
+      ar:{
+        meta_title:"Dimensions Communication | أبعاد التواصل",
+        meta_desc:"أبعاد التواصل للتسويق الرقمي: مواقع وصفحات هبوط، إعلانات مدفوعة، سيو، وأتمتة مبنية على بيانات.",
+        og_title:"Dimensions Communication | أبعاد التواصل",
+        og_desc:"نبني حضورك الرقمي من الهوية وحتى التحويل.",
+
+        lang_btn:"AR/EN",
+        aria_lang:"تغيير اللغة",
+        aria_theme:"تغيير الثيم",
+        aria_logo:"شعار أبعاد التواصل",
+        aria_social:"وسائل التواصل الاجتماعي",
+        aria_main_links:"روابط رئيسية",
+        aria_portfolio_sections:"أقسام سابقة الأعمال",
+        aria_map_title:"خريطة موقع الشركة",
+
+        nav_about:"من نحن",
+        nav_services:"خدماتنا",
+        nav_portfolio:"سابقة الأعمال",
+        nav_contact:"تواصل معنا",
+        nav_blog:"المدونة",
+
+        pf_profile:"الملف التعريفي للشركة (أبعاد التواصل)",
+        pf_designs_done:"تصاميم قمنا بها",
+        pf_campaigns_done:"حملات إعلانية قمنا بها",
+
+        hero_title:"أبعاد التواصل للتسويق الرقمي",
+        hero_sub:"نبني حضورك الرقمي من الهوية وحتى التحويل",
+        video_fallback:"تعذر تحميل الفيديو. سيتم تشغيل عرض شرائح بديل.",
+        logo_fallback:"",
+        cta_services:"خدماتنا",
+        cta_contact:"تواصل معنا",
+
+        services_title:"خدماتنا",
+        services_desc:"نبني حضورك الرقمي من الهوية وحتى التحويل. مواقع وصفحات هبوط وإعلانات وأتمتة مبنية على بيانات.",
+        svc1:"إعلانات مدفوعة",svc1_desc:"إدارة الميزانيات والإبداعيات والتحسين المستمر.",
+        svc2:"تحسين الظهور SEO",svc2_desc:"سرعة، محتوى وروابط مع تقارير واضحة.",
+        svc3:"مواقع وصفحات هبوط",svc3_desc:"تهيئة للتحويل وربط تحليلات وتتبع.",
+
+        svc_detail_head:"تفاصيل خدماتنــــــــا في إدارة المنصات والحملات",
+        svc_d1:"إدارة منصـــات التواصـل الاجتماعي.",
+        svc_d2:"إعداد الاستراتيجيات التسويقيـة.",
+        svc_d3:"إدارة كاملة ونشر للمنصات.",
+        svc_d4:"المحتـــــوى الإبداعي.",
+        svc_d5:"التصميــم الجرافيكي.",
+        svc_d6:"إدارة الحملات الإعلانيـــــة.",
+        svc_d7:"تحليــــل الأداء والتقارير.",
+        svc_d8:"إدارة الحملات الإعلانيـــة (تفصيل إضافي للحملات).",
+        svc_d9:"عمل تدقيـق كامـــل للحسابات الإعلانية.",
+        svc_d10:"ربط أدوات التحليل مثل GA4 وHotjar وMicrosoft Clarity.",
+        svc_d11:"ربــط Pixels لجميع المنصات.",
+        svc_d12:"اختيار المنصات الأنســـب.",
+        svc_d13:"إدارة الميزانيــة الإعلانيــــة.",
+        svc_d14:"استهداف الجمهور بدقة.",
+        svc_d15:"قياس أداء الحملات يوميًا.",
+        svc_d16:"تحسين الحملات بشكل دوري.",
+        svc_d17:"تقارير دورية بالنتائج والميزانية.",
+        svc_d18:"تصاميم جرافيك ثابتة ومتحركة.",
+        svc_d19:"إنشاء مواقع إلكترونية.",
+        svc_d20:"تجهيز متجر أو موقع إلكتروني من الصفر.",
+
+        services_gallery_title:"آراء شركائنـــــــــــــــــــــــــا:",
+        alt_review1:"رأي عميل 1", alt_review2:"رأي عميل 2", alt_review3:"رأي عميل 3", alt_review4:"رأي عميل 4",
+        alt_review5:"رأي عميل 5", alt_review6:"رأي عميل 6", alt_review7:"رأي عميل 7", alt_review8:"رأي عميل 8",
+
+        portfolio_title:"سابقة الأعمال",
+        portfolio_strip:"شركات عملنا برفقتها",
+        portfolio_hint:"يمر يمينًا بلا توقف",
+        portfolio_note:"احفظ الشعارات بجانب الملف بنفس الأسماء.",
+
+        testimonials_title:"آراء العملاء",
+        t1:"\"نقلوا حملاتنا لمستوى أعلى، تكلفة التحويل انخفضت 37%.\"", t1_by:"شركة محلية",
+        t2:"\"موقع سريع ومهيأ للتحويل. الإطلاق كان خلال أسبوع.\"", t2_by:"متجر إلكتروني",
+        t3:"\"تقارير واضحة ومتابعة أسبوعية. فريق منظم.\"", t3_by:"مزود خدمات",
+
+        contact_title:"تواصل معنا",
+        contact_desc:"نرد خلال يوم عمل. اذكر الهدف والميزانية التقريبية.",
+        phone_label:"📞 الهاتف:", email_label:"✉️ البريد:",
+        ph_name:"الاسم", ph_email:"البريد", ph_phone:"الهاتف", ph_msg:"أخبرنا عن مشروعك", ph_submit:"إرسال",
+        ph_phone_title:"+962xxxxxxxxx أو 0xxxxxxxxx",
+
+        blog_title:"المدونة",
+        blog1:"دليل تحسين محركات البحث 2025", blog1_desc:"نظرة عملية على سرعة الموقع، الكلمات المفتاحية، والروابط الخلفية.",
+        blog2:"هيكلة حملات Meta وGoogle", blog2_desc:"إستراتيجية الميزانيات وتقسيم الجماهير وقياس التحويلات.",
+        blog3:"الأتمتة مع Google Sheets + GAS", blog3_desc:"نموذج جمع ليدز وربطه بالبريد والواتساب.",
+
+        rights_prefix:"©", rights:"جميع الحقوق محفوظة",
+        back_to_top:"⬆︎"
+      },
+      en:{
+        meta_title:"Dimensions Communication",
+        meta_desc:"Digital marketing: websites, landing pages, ads, SEO, and data-driven automation.",
+        og_title:"Dimensions Communication",
+        og_desc:"We build your digital presence from brand to conversion.",
+
+        lang_btn:"EN/AR",
+        aria_lang:"Change language",
+        aria_theme:"Toggle theme",
+        aria_logo:"Dimensions Communication logo",
+        aria_social:"Social media",
+        aria_main_links:"Main navigation",
+        aria_portfolio_sections:"Portfolio sections",
+        aria_map_title:"Company location map",
+
+        nav_about:"About",
+        nav_services:"Services",
+        nav_portfolio:"Portfolio",
+        nav_contact:"Contact",
+        nav_blog:"Blog",
+
+        pf_profile:"Company Profile (Dimensions Communication)",
+        pf_designs_done:"Designs We Made",
+        pf_campaigns_done:"Advertising Campaigns We Ran",
+
+        hero_title:"Dimensions Communication",
+        hero_sub:"We build your digital presence from brand to conversion",
+        video_fallback:"Video failed to load. A slideshow will play instead.",
+        logo_fallback:"",
+        cta_services:"Our Services",
+        cta_contact:"Contact Us",
+
+        services_title:"Our Services",
+        services_desc:"We build your digital presence end-to-end: branding, websites, ads, SEO, and data-driven automation.",
+        svc1:"Paid Advertising", svc1_desc:"Budgets, creatives, and continuous optimization.",
+        svc2:"SEO", svc2_desc:"Speed, content, and links with clear reporting.",
+        svc3:"Websites & Landing Pages", svc3_desc:"Conversion-ready builds with analytics and tracking.",
+
+        svc_detail_head:"Detailed Services for Platforms & Campaigns",
+        svc_d1:"Social media platform management.",
+        svc_d2:"Marketing strategy development.",
+        svc_d3:"Full management and publishing for platforms.",
+        svc_d4:"Creative content production.",
+        svc_d5:"Graphic design.",
+        svc_d6:"Advertising campaign management.",
+        svc_d7:"Performance analysis and reporting.",
+        svc_d8:"Advanced campaign management (additional breakdown).",
+        svc_d9:"Full audit for ad accounts.",
+        svc_d10:"Connect GA4, Hotjar, and Microsoft Clarity.",
+        svc_d11:"Implement pixels for all platforms.",
+        svc_d12:"Choose the most suitable platforms.",
+        svc_d13:"Manage advertising budgets.",
+        svc_d14:"Precise audience targeting.",
+        svc_d15:"Daily campaign performance measurement.",
+        svc_d16:"Ongoing campaign optimization.",
+        svc_d17:"Periodic reports on results and budgets.",
+        svc_d18:"Static and motion graphic designs.",
+        svc_d19:"Website development.",
+        svc_d20:"Set up an online store or full website from scratch.",
+
+        services_gallery_title:"Our Partners' Feedback:",
+        alt_review1:"Client review 1", alt_review2:"Client review 2", alt_review3:"Client review 3", alt_review4:"Client review 4",
+        alt_review5:"Client review 5", alt_review6:"Client review 6", alt_review7:"Client review 7", alt_review8:"Client review 8",
+
+        portfolio_title:"Portfolio",
+        portfolio_strip:"Companies we worked with",
+        portfolio_hint:"Continuous right-to-left loop",
+        portfolio_note:"Place logo files next to this HTML using the shown names.",
+
+        testimonials_title:"Testimonials",
+        t1:"\"Cost per conversion dropped by 37%.\"", t1_by:"Local Company",
+        t2:"\"Fast, conversion-ready website. Launched within a week.\"", t2_by:"E-commerce Store",
+        t3:"\"Clear reports and weekly follow-ups. Organized team.\"", t3_by:"Service Provider",
+
+        contact_title:"Contact Us",
+        contact_desc:"We reply within one business day. Share your goal and rough budget.",
+        phone_label:"📞 Phone:", email_label:"✉️ Email:",
+        ph_name:"Name", ph_email:"Email", ph_phone:"Phone", ph_msg:"Tell us about your project", ph_submit:"Send",
+        ph_phone_title:"+962xxxxxxxxx or 0xxxxxxxxx",
+
+        blog_title:"Blog",
+        blog1:"SEO Guide 2025", blog1_desc:"A practical look at speed, keywords, and backlinks.",
+        blog2:"Structuring Meta & Google Campaigns", blog2_desc:"Budgets, audiences, and conversion tracking.",
+        blog3:"Automation with Google Sheets + GAS", blog3_desc:"Lead capture linked to email and WhatsApp.",
+
+        rights_prefix:"©", rights:"All rights reserved",
+        back_to_top:"⬆︎"
+      }
+    };
+
+    /* دعم ترجمة الخصائص عبر data-i18n-attr-* */
+    function applyAttrI18n(lang){
+      document.querySelectorAll('[data-i18n-attr-aria-label],[data-i18n-attr-title],[data-i18n-attr-alt]')
+        .forEach(el=>{
+          for(const {name,value} of [...el.attributes]){
+            if(!name.startsWith('data-i18n-attr-')) continue;
+            const attr=name.replace('data-i18n-attr-','');
+            const key=value; // القيمة هي مفتاح الترجمة
+            const val=i18n[lang][key];
+            if(val!=null) el.setAttribute(attr,val);
+          }
+        });
+    }
+
+    /* ملفات الشعارات */
+    const COMPANY_FILES=[
+      '6-1.png','7-1.png','19-1.png','27.png','28.png','39.png',
+      '1-2.png','2-1.png','4-1.png','5-1.png',
+      '34.png','35.png','36.png','37.png','38.png',
+      '40.png','41.png','42.png','43.png',
+      '18-1.png','9-1.png','10-1.png','11-1.png','12-1.png',
+      '13.png','14.png','15.png','16.png','17-1.png'
+    ];
+
+    function makeLogosRow(){
+      const row=document.createElement('div');
+      row.style.display='flex';row.style.gap='12px';row.style.alignItems='center';
+      COMPANY_FILES.forEach(fn=>{
+        const wrap=document.createElement('div');
+        wrap.className='thumb-wrap';
+        const img=new Image();
+        img.loading='lazy';img.decoding='async';
+        img.src=fn;img.alt='logo';
+        img.onerror=()=>{wrap.style.background='#fee2e2';wrap.title=`تعذر تحميل: ${fn}`;};
+        wrap.appendChild(img);row.appendChild(wrap);
+      });
+      return row;
+    }
+
+    function buildInfiniteMarquee(){
+      ['companies-track','companies-track-2'].forEach(id=>{
+        const track=document.getElementById(id);
+        const scroller=track?.parentElement;
+        if(!track||!scroller) return;
+        track.innerHTML='';
+        const row=makeLogosRow();
+        track.appendChild(row);
+        while(track.scrollWidth < scroller.clientWidth*2){ track.appendChild(row.cloneNode(true)); }
+        if(track.children.length % 2 !== 0){ track.appendChild(row.cloneNode(true)); }
+        const SPEED=50; const half=track.scrollWidth/2; const dur=half/SPEED;
+        track.style.setProperty('--dur',`${Math.max(dur,20)}s`);
+      });
+    }
+
+    /* الثيم */
+    const root=document.documentElement;
+    const savedTheme=localStorage.getItem('theme');
+    if(savedTheme==='dark'||savedTheme==='light') root.setAttribute('data-theme',savedTheme);
+    const themeBtn=document.getElementById('themeBtn');
+    const updateThemeBtn=()=>{ if(themeBtn) themeBtn.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙'; };
+    updateThemeBtn();
+    themeBtn.onclick=()=>{
+      const next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+      root.setAttribute('data-theme',next);
+      localStorage.setItem('theme',next);
+      updateThemeBtn();
+    };
+
+    /* اللغة */
+    let currentLang=(localStorage.getItem('lang')||((navigator.language||'ar').startsWith('ar')?'ar':'en'));
+    function applyLang(lang){
+      currentLang=lang;localStorage.setItem('lang',lang);
+      document.documentElement.lang=lang;
+      document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const k=el.getAttribute('data-i18n');
+        const v=i18n[lang][k];
+        if(v!=null) el.textContent=v;
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+        const k=el.getAttribute('data-i18n-placeholder');
+        const v=i18n[lang][k];
+        if(v!=null) el.setAttribute('placeholder',v);
+      });
+      document.querySelectorAll('[data-i18n-meta]').forEach(m=>{
+        const k=m.getAttribute('data-i18n-meta');
+        const v=i18n[lang][k];
+        if(v!=null) m.setAttribute('content',v);
+      });
+
+      // خصائص قابلة للتعريب (aria-label, title, alt)
+      applyAttrI18n(lang);
+
+      document.title=i18n[lang].meta_title||document.title;
+
+      const lb=document.getElementById('langBtn');
+      if(lb) lb.textContent=i18n[lang].lang_btn;
+
+      const map=document.querySelector('#map-contact iframe');
+      if(map){
+        const u=new URL(map.src);
+        u.searchParams.set('hl',lang==='ar'?'ar':'en');
+        map.src=u.toString();
+      }
+
+      buildInfiniteMarquee();
+    }
+    document.getElementById('langBtn').onclick=()=>applyLang(currentLang==='ar'?'en':'ar');
+    applyLang(currentLang);
+
+    /* سنة الفوتر + كشف العناصر + زر أعلى */
+    document.getElementById('y').textContent=new Date().getFullYear();
+    const io=new IntersectionObserver((es)=>{
+      es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
+    },{threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    const topBtn=document.getElementById('topBtn');
+    topBtn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+    window.addEventListener('scroll',()=>{
+      if(window.scrollY>650) topBtn.classList.add('show'); else topBtn.classList.remove('show');
+    });
+
+    /* الشعار */
+    (function setLogo(){
+      const CAND=['dc_logo.png','dc_logo.png.png','dc_logo.png.jpg','dc_logo.jpg','logo.png','logo_dc.png'];
+      const el=document.getElementById('logo');
+      (function tryi(i){
+        if(i>=CAND.length){ const hint=document.getElementById('logoHint'); if(hint) hint.style.display='block'; return; }
+        const img=new Image();
+        img.onload=()=>{el.src=CAND[i];el.style.display='block';};
+        img.onerror=()=>tryi(i+1);
+        img.src=CAND[i];
+      })(0);
+    })();
+
+    buildInfiniteMarquee();
+
+    /* سحب شرائح آراء العملاء النصية */
+    const slider=document.getElementById('slider');
+    let isDown=false,startX,scrollLeft;
+    slider?.addEventListener('mousedown',e=>{ isDown=true; startX=e.pageX-slider.offsetLeft; scrollLeft=slider.scrollLeft; });
+    slider?.addEventListener('mouseleave',()=>isDown=false);
+    slider?.addEventListener('mouseup',()=>isDown=false);
+    slider?.addEventListener('mousemove',e=>{ if(!isDown) return; e.preventDefault(); const x=e.pageX-slider.offsetLeft; slider.scrollLeft=scrollLeft-(x-startX)*1.2; });
+
+    /* بديل شرائح للهيرو */
+    const video=document.getElementById('heroVideo');
+    const slideshow=document.getElementById('slideshow');
+    const slides=['hero1.jpg','hero2.jpg','hero3.jpg'];
+    function startSlideshow(){
+      if(!slideshow) return;
+      slideshow.style.display='block';
+      slideshow.innerHTML=slides.map((src,i)=>`<img alt="" src="${src}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:${i?0:1};transition:opacity .8s">`).join('');
+      let idx=0; const imgs=[...slideshow.querySelectorAll('img')];
+      setInterval(()=>{ imgs[idx].style.opacity=0; idx=(idx+1)%imgs.length; imgs[idx].style.opacity=1; },4000);
+    }
+    video?.addEventListener('error',startSlideshow,{once:true});
+
+    /* القائمة المنسدلة باللمس */
+    (function enableDropdownTouch(){
+      const host=document.querySelector('.has-drop');
+      const toggle=host?.querySelector('.drop-toggle');
+      if(!host||!toggle) return;
+      toggle.addEventListener('click',e=>{
+        if(window.matchMedia('(hover: none)').matches){
+          e.preventDefault(); host.classList.toggle('open');
+          toggle.setAttribute('aria-expanded',host.classList.contains('open')?'true':'false');
+        }
+      });
+      document.addEventListener('click',e=>{ if(!host.contains(e.target)){ host.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); } });
+    })();
+
+    /* إرسال نموذج عبر GAS */
+    const GAS_URL='https://script.google.com/macros/s/AKfycbwB8zHol0K86cw4nyWyUr80HZgHslmfY7gBPzZA2sMQaQqVHbsQPToOAZEak4_MUYJC/exec';
+    (function wireContactForm(){
+      const form=document.getElementById('contactBox');
+      const msg=document.getElementById('boxMsg');
+      const btn=form?.querySelector('button[type="submit"]');
+      if(!form) return;
+      function setBusy(v){ if(btn){ btn.disabled=v; btn.textContent=v ? (currentLang==='ar'? 'جارٍ الإرسال...' : 'Sending...') : (i18n[currentLang].ph_submit); } }
+      function setMsg(t){ if(msg) msg.textContent=t; }
+      form.addEventListener('submit',async(e)=>{
+        e.preventDefault();
+        if(!form.checkValidity()){
+          setMsg(currentLang==='ar'?'أكمل الحقول المطلوبة':'Please complete required fields');
+          return;
+        }
+        const payload={
+          name:form.name.value.trim(),
+          email:form.email.value.trim(),
+          phone:form.phone.value.trim(),
+          message:form.message.value.trim(),
+          source:location.href,
+          ua:navigator.userAgent
+        };
+        setBusy(true); setMsg(currentLang==='ar'?'جارٍ الإرسال...':'Sending...');
+        try{
+          const body=new URLSearchParams(payload);
+          const res=await fetch(GAS_URL,{ method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'}, body });
+          let ok=res.ok;
+          try{ const j=await res.json(); ok=j&&j.ok===true; }catch(_){ }
+          if(ok){ setMsg(currentLang==='ar'?'تم الإرسال بنجاح. سنرد قريبًا.':'Sent successfully. We will reply soon.'); form.reset(); }
+          else { setMsg(currentLang==='ar'?'تعذر الإرسال. تحقق من GAS_URL أو أعد المحاولة.':'Send failed. Check GAS_URL or try again.'); }
+        }catch(err){ console.error(err); setMsg(currentLang==='ar'?'تعذر الإرسال. تحقق من الاتصال أو GAS_URL.':'Send failed. Check connection or GAS_URL.'); }
+        finally{ setBusy(false); }
+      });
+    })();
+  </script>
+</body>
+</html>

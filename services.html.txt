@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>خدماتنا | Dimensions Communication</title>
+
+  <!-- نفس الميتا تقريباً -->
+  <meta name="description" data-i18n-meta="meta_desc" content="أبعاد التواصل للتسويق الرقمي: مواقع وصفحات هبوط، إعلانات مدفوعة، سيو، وأتمتة مبنية على بيانات."/>
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:title" data-i18n-meta="og_title" content="Dimensions Communication | أبعاد التواصل"/>
+  <meta property="og:description" data-i18n-meta="og_desc" content="نبني حضورك الرقمي من الهوية وحتى التحويل."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="dc_logo.png"/>
+  <meta name="theme-color" content="#0ea5a3"/>
+  <link rel="icon" href="dc_logo.png"/>
+
+  <style>
+    html{scroll-behavior:smooth}
+    :root{
+      --bg:#f6f7fb;--ink:#0f172a;--muted:#6b7280;--card:#fff;--stroke:#e5e7eb;
+      --brand:#0ea5a3;--accent:#f59e0b;--radius:16px;
+      --shadow:0 12px 28px rgba(2,6,23,.08);
+      --focus:0 0 0 3px rgba(20,184,166,.25)
+    }
+    :root[data-theme="dark"]{
+      --bg:#0b0d10;--ink:#e5e7eb;--muted:#94a3b8;--card:#111318;--stroke:#1f2430;
+      --brand:#14b8a6;--accent:#fbbf24;
+      --shadow:0 12px 34px rgba(0,0,0,.35);
+      --focus:0 0 0 3px rgba(20,184,166,.35)
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Kufi Arabic",Cairo,Arial,sans-serif;
+      background:var(--bg);color:var(--ink);line-height:1.7
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{width:min(1150px,92%);margin-inline:auto}
+
+    /* الهيدر */
+    header{
+      position:sticky;top:0;z-index:30;
+      background:color-mix(in oklab,var(--bg) 85%,transparent);
+      backdrop-filter:saturate(160%) blur(8px);
+      border-bottom:1px solid var(--stroke)
+    }
+    .bar{
+      display:grid;grid-template-columns:1fr auto 1fr;
+      align-items:center;gap:10px;padding:10px 0
+    }
+    .controls{display:flex;gap:12px;align-items:center;justify-self:start}
+    .control{
+      border:1px solid var(--stroke);background:var(--card);color:var(--ink);
+      padding:8px 12px;border-radius:12px;cursor:pointer;font-weight:700;
+      box-shadow:var(--shadow)
+    }
+    .control:focus-visible{outline:none;box-shadow:var(--focus)}
+    .center-logo{justify-self:center;display:flex;align-items:center;gap:10px}
+    .center-logo img{height:116px;width:auto;object-fit:contain;display:none}
+
+    .social{justify-self:end;display:flex;gap:8px;align-items:center}
+    .social a{
+      width:42px;height:42px;display:grid;place-items:center;
+      border:1px solid var(--stroke);background:var(--card);
+      border-radius:12px;box-shadow:var(--shadow)
+    }
+    .icon{width:20px;height:20px}
+
+    /* ألوان أصلية لأيقونات التواصل الاجتماعي */
+    .social a[aria-label="Facebook"] .icon { color:#1877F2; }
+    .social a[aria-label="LinkedIn"] .icon { color:#0A66C2; }
+    .social a[aria-label="Instagram"] .icon { color:#E4405F; }
+    .social a[aria-label="WhatsApp"] .icon {
+      color:#25D366;
+      stroke:#128C7E;
+      stroke-width:.6;
+    }
+
+    /* شريط الأقسام */
+    .subnav{
+      position:relative;border-top:1px solid var(--stroke);
+      border-bottom:1px solid var(--stroke);
+      background:color-mix(in oklab,var(--card) 85%,transparent)
+    }
+    .subnav-list{
+      display:flex;gap:22px;align-items:center;justify-content:center;
+      margin:0;padding:10px 0;list-style:none
+    }
+    .subnav a{font-weight:900;padding:6px 10px;border-radius:10px}
+    .subnav a:hover{background:color-mix(in oklab,var(--card) 65%,transparent)}
+    @media(max-width:900px){.subnav-list{flex-wrap:wrap;gap:12px}}
+
+    /* كروت عامة */
+    .card{
+      background:var(--card);border:1px solid var(--stroke);
+      border-radius:var(--radius);box-shadow:var(--shadow);padding:16px
+    }
+    .card.hoverable{transition:transform .2s ease,box-shadow .2s ease}
+    .card.hoverable:hover{transform:translateY(-4px);box-shadow:0 16px 36px rgba(2,6,23,.12)}
+
+    section{padding:56px 0;scroll-margin-top:120px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:900px){.grid-3{grid-template-columns:1fr}}
+
+    .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    .services-detail-card h3{ margin-top:4px;margin-bottom:10px;font-size:1.1rem }
+    .services-list{
+      margin:0;padding:0;list-style:decimal;
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:6px 28px;font-size:.92rem
+    }
+    .services-list li{ margin-inline-start:1.2rem }
+
+    /* قسم آراء شركائنا – شريط صور التقييمات */
+    #services-gallery{background:transparent}
+    .insta-strip{
+      border-radius:18px;border:1px solid var(--stroke);
+      background:var(--card);box-shadow:var(--shadow);
+      padding:14px;max-width:100%;overflow:hidden
+    }
+    .insta-window{ position:relative;overflow:hidden;width:100% }
+    .insta-track{
+      display:flex;gap:14px;align-items:center;
+      width:max-content;
+      animation:instaLoop 55s linear infinite
+    }
+    .insta-track img{
+      width:260px;max-width:80vw;height:auto;
+      flex-shrink:0;border-radius:24px;
+      box-shadow:var(--shadow);background:#f9fafb
+    }
+    @keyframes instaLoop{ to{transform:translateX(-50%)} }
+    .insta-strip,.insta-window,.insta-track{direction:ltr}
+
+    #topBtn{
+      position:fixed;inset-inline-end:16px;inset-block-end:16px;
+      opacity:0;pointer-events:none;transition:opacity .2s;z-index:40
+    }
+    #topBtn.show{opacity:1;pointer-events:auto}
+    footer{ border-top:1px solid var(--stroke);color:var(--muted);text-align:center;padding:18px 0;margin-top:22px }
+  </style>
+</head>
+<body>
+  <!-- الهيدر + القائمة (نفس الهيدر مع تحديث بسيط للروابط لتعود للصفحة الرئيسية) -->
+  <header>
+    <div class="container bar">
+      <div class="controls">
+        <button id="langBtn" class="control" data-i18n="lang_btn" data-i18n-attr-aria-label="aria_lang" aria-label="Language">AR/EN</button>
+        <button id="themeBtn" class="control" data-i18n-attr-aria-label="aria_theme" aria-label="Theme">🌙</button>
+      </div>
+      <a href="index.html#home" class="center-logo" aria-label="DC Logo" data-i18n-attr-aria-label="aria_logo">
+        <img id="logo" alt="DC logo">
+      </a>
+      <nav class="social" aria-label="Social" data-i18n-attr-aria-label="aria_social">
+        <a target="_blank" rel="noopener" href="https://web.facebook.com/profile.php?id=61573739130386&locale=ar_AR" aria-label="Facebook">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2v-3h2V9.6c0-2 1.2-3.1 3-3.1.9 0 1.8.16 1.8.16v2h-1c-1 0-1.3.62-1.3 1.3V12h2.2l-.35 3h-1.85v7A10 10 0 0 0 22 12"/>
+          </svg>
+        </a>
+        <a target="_blank" rel="noopener" href="https://www.linkedin.com/company/106484073/admin/dashboard/" aria-label="LinkedIn">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v15H0zM7.5 8H12v2h.06c.62-1.18 2.14-2.43 4.4-2.43 4.7 0 5.57 3.09 5.57 7.11V23H17v-6.62c0-1.58-.03-3.63-2.21-3.63-2.21 0-2.55 1.73-2.55 3.52V23H7.5z"/>
+          </svg>
+        </a>
+        <a target="_blank" rel="noopener" href="https://www.instagram.com/dimensions.communication" aria-label="Instagram">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="4" y="4" width="16" height="16" rx="4"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <circle cx="18" cy="6.5" r="1"/>
+          </svg>
+        </a>
+        <a target="_blank" rel="noopener" href="https://wa.me/962791460998" aria-label="WhatsApp">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.52 3.48A11.77 11.77 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.1.55 4.07 1.52 5.78L0 24l6.33-1.66A11.9 11.9 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.2-3.48-8.52Z"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+
+    <nav class="subnav" aria-label="Main links" data-i18n-attr-aria-label="aria_main_links">
+      <div class="container">
+        <ul class="subnav-list">
+          <!-- ترجع للصفحة الرئيسية للأقسام الأخرى -->
+          <li><a href="index.html#about" data-i18n="nav_about">من نحن</a></li>
+          <!-- هذه الصفحة الحالية مخصصة للخدمات -->
+          <li><a href="#services-main" data-i18n="nav_services">خدماتنــــــــا</a></li>
+          <li><a href="index.html#portfolio" data-i18n="nav_portfolio">سابقة الأعمال</a></li>
+          <li><a href="index.html#map-contact" data-i18n="nav_contact">تواصل معنا</a></li>
+          <li><a href="index.html#blog" data-i18n="nav_blog">المدونة</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- محتوى الصفحة: قسم الخدمات فقط -->
+  <main>
+    <!-- قسم الخدمات الرئيسي -->
+    <section id="services-main">
+      <div class="container reveal">
+        <h2 style="margin-top:0" data-i18n="services_title">خدماتنا</h2>
+        <p class="muted" style="margin:-6px 0 16px;text-align:center" data-i18n="services_desc">
+          نبني حضورك الرقمي من الهوية وحتى التحويل. مواقع وصفحات هبوط وإعلانات وأتمتة مبنية على بيانات.
+        </p>
+
+        <!-- الكروت الرئيسية الثلاثة -->
+        <div class="grid-3">
+          <article class="card hoverable">
+            <h3 data-i18n="svc1">إعلانات مدفوعة</h3>
+            <p class="muted" data-i18n="svc1_desc">إدارة الميزانيات والإبداعيات والتحسين المستمر.</p>
+          </article>
+          <article class="card hoverable">
+            <h3 data-i18n="svc2">تحسين الظهور SEO</h3>
+            <p class="muted" data-i18n="svc2_desc">سرعة، محتوى وروابط مع تقارير واضحة.</p>
+          </article>
+          <article class="card hoverable">
+            <h3 data-i18n="svc3">مواقع وصفحات هبوط</h3>
+            <p class="muted" data-i18n="svc3_desc">تهيئة للتحويل وربط تحليلات وتتبع.</p>
+          </article>
+        </div>
+
+        <!-- القائمة التفصيلية للخدمات -->
+        <article class="card services-detail-card" style="margin-top:24px">
+          <h3 data-i18n="svc_detail_head">تفاصيل خدماتنــــــــا في إدارة المنصات والحملات</h3>
+          <ol class="services-list">
+            <li data-i18n="svc_d1">إدارة منصـــات التواصـل الاجتماعي.</li>
+            <li data-i18n="svc_d2">إعداد الاستراتيجيات التسويقيـة.</li>
+            <li data-i18n="svc_d3">إدارة كاملة ونشر للمنصات.</li>
+            <li data-i18n="svc_d4">المحتـــــوى الإبداعي.</li>
+            <li data-i18n="svc_d5">التصميــم الجرافيكي.</li>
+            <li data-i18n="svc_d6">إدارة الحملات الإعلانيـــــة.</li>
+            <li data-i18n="svc_d7">تحليــــل الأداء والتقارير.</li>
+            <li data-i18n="svc_d8">إدارة الحملات الإعلانيـــة (تفصيل إضافي للحملات).</li>
+            <li data-i18n="svc_d9">عمل تدقيـق كامـــل للحسابات الإعلانية.</li>
+            <li data-i18n="svc_d10">ربط أدوات التحليل مثل GA4 وHotjar وMicrosoft Clarity.</li>
+            <li data-i18n="svc_d11">ربــط Pixels لجميع المنصات.</li>
+            <li data-i18n="svc_d12">اختيار المنصات الأنســـب.</li>
+            <li data-i18n="svc_d13">إدارة الميزانيــة الإعلانيــــة.</li>
+            <li data-i18n="svc_d14">استهداف الجمهور بدقة.</li>
+            <li data-i18n="svc_d15">قياس أداء الحملات يوميًا.</li>
+            <li data-i18n="svc_d16">تحسين الحملات بشكل دوري.</li>
+            <li data-i18n="svc_d17">تقارير دورية بالنتائج والميزانية.</li>
+            <li data-i18n="svc_d18">تصاميم جرافيك ثابتة ومتحركة.</li>
+            <li data-i18n="svc_d19">إنشاء مواقع إلكترونية.</li>
+            <li data-i18n="svc_d20">تجهيز متجر أو موقع إلكتروني من الصفر.</li>
+          </ol>
+        </article>
+      </div>
+    </section>
+
+    <!-- آراء شركائنـــــــــــــــــــــــــا: نفس شريط التقييمات -->
+    <section id="services-gallery">
+      <div class="container reveal">
+        <h2 style="margin-top:0" data-i18n="services_gallery_title">آراء شركائنـــــــــــــــــــــــــا:</h2>
+        <div class="insta-strip">
+          <div class="insta-window">
+            <div class="insta-track">
+              <img src="review-01.png.png" alt="رأي عميل 1" data-i18n-attr-alt="alt_review1">
+              <img src="review-02.png.png" alt="رأي عميل 2" data-i18n-attr-alt="alt_review2">
+              <img src="review-03.png.png" alt="رأي عميل 3" data-i18n-attr-alt="alt_review3">
+              <img src="review-04.png.png" alt="رأي عميل 4" data-i18n-attr-alt="alt_review4">
+              <img src="review-05.png.png" alt="رأي عميل 5" data-i18n-attr-alt="alt_review5">
+              <img src="review-06.png.png" alt="رأي عميل 6" data-i18n-attr-alt="alt_review6">
+              <img src="review-07.png.png" alt="رأي عميل 7" data-i18n-attr-alt="alt_review7">
+              <img src="review-08.png.png" alt="رأي عميل 8" data-i18n-attr-alt="alt_review8">
+              <!-- تكرار للـ loop -->
+              <img src="review-01.png.png" alt="رأي عميل 1" data-i18n-attr-alt="alt_review1">
+              <img src="review-02.png.png" alt="رأي عميل 2" data-i18n-attr-alt="alt_review2">
+              <img src="review-03.png.png" alt="رأي عميل 3" data-i18n-attr-alt="alt_review3">
+              <img src="review-04.png.png" alt="رأي عميل 4" data-i18n-attr-alt="alt_review4">
+              <img src="review-05.png.png" alt="رأي عميل 5" data-i18n-attr-alt="alt_review5">
+              <img src="review-06.png.png" alt="رأي عميل 6" data-i18n-attr-alt="alt_review6">
+              <img src="review-07.png.png" alt="رأي عميل 7" data-i18n-attr-alt="alt_review7">
+              <img src="review-08.png.png" alt="رأي عميل 8" data-i18n-attr-alt="alt_review8">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <span data-i18n="rights_prefix">©</span>
+      <span id="y"></span>
+      <span data-i18n="rights">جميع الحقوق محفوظة</span>
+    </div>
+  </footer>
+  <button id="topBtn" class="control" data-i18n="back_to_top" data-i18n-attr-aria-label="back_to_top" aria-label="Back to top">⬆︎</button>
+
+  <script>
+    /* نفس قاموس الترجمة الذي عندك (مختصر أو كامل) */
+    const i18n={
+      ar:{
+        meta_title:"Dimensions Communication | أبعاد التواصل",
+        meta_desc:"أبعاد التواصل للتسويق الرقمي: مواقع وصفحات هبوط، إعلانات مدفوعة، سيو، وأتمتة مبنية على بيانات.",
+        og_title:"Dimensions Communication | أبعاد التواصل",
+        og_desc:"نبني حضورك الرقمي من الهوية وحتى التحويل.",
+
+        lang_btn:"AR/EN",
+        aria_lang:"تغيير اللغة",
+        aria_theme:"تغيير الثيم",
+        aria_logo:"شعار أبعاد التواصل",
+        aria_social:"وسائل التواصل الاجتماعي",
+        aria_main_links:"روابط رئيسية",
+        aria_map_title:"خريطة موقع الشركة",
+
+        nav_about:"من نحن",
+        nav_services:"خدماتنا",
+        nav_portfolio:"سابقة الأعمال",
+        nav_contact:"تواصل معنا",
+        nav_blog:"المدونة",
+
+        hero_title:"أبعاد التواصل للتسويق الرقمي",
+        hero_sub:"نبني حضورك الرقمي من الهوية وحتى التحويل",
+
+        services_title:"خدماتنا",
+        services_desc:"نبني حضورك الرقمي من الهوية وحتى التحويل. مواقع وصفحات هبوط وإعلانات وأتمتة مبنية على بيانات.",
+        svc1:"إعلانات مدفوعة",svc1_desc:"إدارة الميزانيات والإبداعيات والتحسين المستمر.",
+        svc2:"تحسين الظهور SEO",svc2_desc:"سرعة، محتوى وروابط مع تقارير واضحة.",
+        svc3:"مواقع وصفحات هبوط",svc3_desc:"تهيئة للتحويل وربط تحليلات وتتبع.",
+
+        svc_detail_head:"تفاصيل خدماتنــــــــا في إدارة المنصات والحملات",
+        svc_d1:"إدارة منصـــات التواصـل الاجتماعي.",
+        svc_d2:"إعداد الاستراتيجيات التسويقيـة.",
+        svc_d3:"إدارة كاملة ونشر للمنصات.",
+        svc_d4:"المحتـــــوى الإبداعي.",
+        svc_d5:"التصميــم الجرافيكي.",
+        svc_d6:"إدارة الحملات الإعلانيـــــة.",
+        svc_d7:"تحليــــل الأداء والتقارير.",
+        svc_d8:"إدارة الحملات الإعلانيـــة (تفصيل إضافي للحملات).",
+        svc_d9:"عمل تدقيـق كامـــل للحسابات الإعلانية.",
+        svc_d10:"ربط أدوات التحليل مثل GA4 وHotjar وMicrosoft Clarity.",
+        svc_d11:"ربــط Pixels لجميع المنصات.",
+        svc_d12:"اختيار المنصات الأنســـب.",
+        svc_d13:"إدارة الميزانيــة الإعلانيــــة.",
+        svc_d14:"استهداف الجمهور بدقة.",
+        svc_d15:"قياس أداء الحملات يوميًا.",
+        svc_d16:"تحسين الحملات بشكل دوري.",
+        svc_d17:"تقارير دورية بالنتائج والميزانية.",
+        svc_d18:"تصاميم جرافيك ثابتة ومتحركة.",
+        svc_d19:"إنشاء مواقع إلكترونية.",
+        svc_d20:"تجهيز متجر أو موقع إلكتروني من الصفر.",
+
+        services_gallery_title:"آراء شركائنـــــــــــــــــــــــــا:",
+        alt_review1:"رأي عميل 1", alt_review2:"رأي عميل 2", alt_review3:"رأي عميل 3", alt_review4:"رأي عميل 4",
+        alt_review5:"رأي عميل 5", alt_review6:"رأي عميل 6", alt_review7:"رأي عميل 7", alt_review8:"رأي عميل 8",
+
+        rights_prefix:"©", rights:"جميع الحقوق محفوظة",
+        back_to_top:"⬆︎"
+      },
+      en:{
+        meta_title:"Dimensions Communication",
+        meta_desc:"Digital marketing: websites, landing pages, ads, SEO, and data-driven automation.",
+        og_title:"Dimensions Communication",
+        og_desc:"We build your digital presence from brand to conversion.",
+
+        lang_btn:"EN/AR",
+        aria_lang:"Change language",
+        aria_theme:"Toggle theme",
+        aria_logo:"Dimensions Communication logo",
+        aria_social:"Social media",
+        aria_main_links:"Main navigation",
+        aria_map_title:"Company location map",
+
+        nav_about:"About",
+        nav_services:"Services",
+        nav_portfolio:"Portfolio",
+        nav_contact:"Contact",
+        nav_blog:"Blog",
+
+        hero_title:"Dimensions Communication",
+        hero_sub:"We build your digital presence from brand to conversion",
+
+        services_title:"Our Services",
+        services_desc:"We build your digital presence end-to-end: branding, websites, ads, SEO, and data-driven automation.",
+        svc1:"Paid Advertising",svc1_desc:"Budgets, creatives, and continuous optimization.",
+        svc2:"SEO",svc2_desc:"Speed, content, and links with clear reporting.",
+        svc3:"Websites & Landing Pages",svc3_desc:"Conversion-ready builds with analytics and tracking.",
+
+        svc_detail_head:"Detailed Services for Platforms & Campaigns",
+        svc_d1:"Social media platform management.",
+        svc_d2:"Marketing strategy development.",
+        svc_d3:"Full management and publishing for platforms.",
+        svc_d4:"Creative content production.",
+        svc_d5:"Graphic design.",
+        svc_d6:"Advertising campaign management.",
+        svc_d7:"Performance analysis and reporting.",
+        svc_d8:"Advanced campaign management (additional breakdown).",
+        svc_d9:"Full audit for ad accounts.",
+        svc_d10:"Connect GA4, Hotjar, and Microsoft Clarity.",
+        svc_d11:"Implement pixels for all platforms.",
+        svc_d12:"Choose the most suitable platforms.",
+        svc_d13:"Manage advertising budgets.",
+        svc_d14:"Precise audience targeting.",
+        svc_d15:"Daily campaign performance measurement.",
+        svc_d16:"Ongoing campaign optimization.",
+        svc_d17:"Periodic reports on results and budgets.",
+        svc_d18:"Static and motion graphic designs.",
+        svc_d19:"Website development.",
+        svc_d20:"Set up an online store or full website from scratch.",
+
+        services_gallery_title:"Our Partners' Feedback:",
+        alt_review1:"Client review 1", alt_review2:"Client review 2", alt_review3:"Client review 3", alt_review4:"Client review 4",
+        alt_review5:"Client review 5", alt_review6:"Client review 6", alt_review7:"Client review 7", alt_review8:"Client review 8",
+
+        rights_prefix:"©", rights:"All rights reserved",
+        back_to_top:"⬆︎"
+      }
+    };
+
+    function applyAttrI18n(lang){
+      document.querySelectorAll('[data-i18n-attr-aria-label],[data-i18n-attr-title],[data-i18n-attr-alt]')
+        .forEach(el=>{
+          for(const {name,value} of [...el.attributes]){
+            if(!name.startsWith('data-i18n-attr-')) continue;
+            const attr=name.replace('data-i18n-attr-','');
+            const key=value;
+            const val=i18n[lang][key];
+            if(val!=null) el.setAttribute(attr,val);
+          }
+        });
+    }
+
+    const root=document.documentElement;
+    const savedTheme=localStorage.getItem('theme');
+    if(savedTheme==='dark'||savedTheme==='light') root.setAttribute('data-theme',savedTheme);
+    const themeBtn=document.getElementById('themeBtn');
+    const updateThemeBtn=()=>{ if(themeBtn) themeBtn.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙'; };
+    updateThemeBtn();
+    themeBtn.onclick=()=>{
+      const next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+      root.setAttribute('data-theme',next);
+      localStorage.setItem('theme',next);
+      updateThemeBtn();
+    };
+
+    let currentLang=(localStorage.getItem('lang')||((navigator.language||'ar').startsWith('ar')?'ar':'en'));
+    function applyLang(lang){
+      currentLang=lang;localStorage.setItem('lang',lang);
+      document.documentElement.lang=lang;
+      document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const k=el.getAttribute('data-i18n');
+        const v=i18n[lang][k];
+        if(v!=null) el.textContent=v;
+      });
+      document.querySelectorAll('[data-i18n-meta]').forEach(m=>{
+        const k=m.getAttribute('data-i18n-meta');
+        const v=i18n[lang][k];
+        if(v!=null) m.setAttribute('content',v);
+      });
+
+      document.title=i18n[lang].meta_title||document.title;
+      applyAttrI18n(lang);
+
+      const lb=document.getElementById('langBtn');
+      if(lb) lb.textContent=i18n[lang].lang_btn;
+    }
+    document.getElementById('langBtn').onclick=()=>applyLang(currentLang==='ar'?'en':'ar');
+    applyLang(currentLang);
+
+    /* سنة الفوتر + كشف العناصر + زر أعلى */
+    document.getElementById('y').textContent=new Date().getFullYear();
+    const io=new IntersectionObserver((es)=>{
+      es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
+    },{threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    const topBtn=document.getElementById('topBtn');
+    topBtn.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+    window.addEventListener('scroll',()=>{
+      if(window.scrollY>400) topBtn.classList.add('show'); else topBtn.classList.remove('show');
+    });
+
+    /* الشعار */
+    (function setLogo(){
+      const CAND=['dc_logo.png','dc_logo.png.png','dc_logo.png.jpg','dc_logo.jpg','logo.png','logo_dc.png'];
+      const el=document.getElementById('logo');
+      (function tryi(i){
+        if(i>=CAND.length){ return; }
+        const img=new Image();
+        img.onload=()=>{el.src=CAND[i];el.style.display='block';};
+        img.onerror=()=>tryi(i+1);
+        img.src=CAND[i];
+      })(0);
+    })();
+  </script>
+</body>
+</html>
